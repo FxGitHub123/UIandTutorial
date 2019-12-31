@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 58f3b5bd3774cf047908436faed6f4c7, type: 3}
+    totalSpriteSurfaceArea: 114688
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: bcd8b485e60536b449fa35b42036536f, type: 3}
+  - {fileID: 21300000, guid: f274fdc56dcff324dae794490814eb6c, type: 3}
+  - {fileID: 21300000, guid: 32254de67660401489894db63d8395d2, type: 3}
+  - {fileID: 21300000, guid: 05f40298bbef6354380d2ed4ffa4a738, type: 3}
+  - {fileID: 21300000, guid: b01c5dd8004ff2044a29d57cc1d0136a, type: 3}
+  - {fileID: 21300000, guid: 88ee002a1e8cb3f478ec9080f655dc3d, type: 3}
+  - {fileID: 21300000, guid: 5d2170ef08fa76b499e9c0f0706740c1, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - icon_magnifier
+  - UI_Button_Goolgle_Rank
+  - check_mark
+  - UI_Button_Goolgle_Achieve
+  - icon_question_mark
+  - Icon_Human
+  - plus icon
+  m_Tag: UI
+  m_IsVariant: 0

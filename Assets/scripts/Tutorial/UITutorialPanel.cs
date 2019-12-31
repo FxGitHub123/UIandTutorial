@@ -6,105 +6,103 @@ using UnityEngine.UI;
 public class UITutorialPanel : UIPanelBase
 {
 
-    private float diameter; // 直径
-    private Material material;
-    private float current = 0f;
-    private Vector3[] corners = new Vector3[4];
-    private float yVelocity = 0f;
+    private float m_diameter; // 直径
+    private Material m_material;
+    private float m_current = 0f;
+    private Vector3[] m_corners = new Vector3[4];
+    private float m_yVelocity = 0f;
 
     [SerializeField]
-    private TutorialClick simulateButton;
+    private TutorialClick m_simulateButton;
 
     [SerializeField]
-    private Image mask;
+    private Image m_maskImage;
 
-    private Canvas canvas;
+    [SerializeField]
+    private Image m_clickMask;
+
+    private Canvas m_canvas;
     public override void Init()
     {
-        canvas = GameObject.Find("UIManager/Canvas").GetComponent<Canvas>();
-        mask.enabled = false;
-        mask.raycastTarget = false;
-        simulateButton.gameObject.SetActive(false);
+        m_canvas = GameObject.Find("UIManager/Canvas").GetComponent<Canvas>();
+        m_maskImage.enabled = false;
+        m_maskImage.raycastTarget = false;
+        m_simulateButton.gameObject.SetActive(false);
+        CloseClickMask();
     }
 
-    public void SetGuideTarget(TutorialObj target)
+    public void SetGuideTarget(TutorialObj target,bool IsMask)
     {
-        mask.enabled = true;
-        mask.raycastTarget = true;
+        m_maskImage.enabled = true;
+        m_maskImage.raycastTarget = IsMask;
        
-        if (canvas == null) canvas = GameObject.Find("UIManager/Canvas").GetComponent<Canvas>();
+        if (m_canvas == null) m_canvas = GameObject.Find("UIManager/Canvas").GetComponent<Canvas>();
   
-        target.image.rectTransform.GetWorldCorners(corners);
+        target.targetImage.rectTransform.GetWorldCorners(m_corners);
 
-        simulateButton.gameObject.SetActive(true);
-        simulateButton.SetSimulateButton(target.button);
+        m_simulateButton.gameObject.SetActive(true);
+        m_simulateButton.SetSimulateButton(target);
 
-        diameter = Vector2.Distance(WorldToCanvasPos(canvas, corners[0]), WorldToCanvasPos(canvas, corners[2])) / 2f;
-        Debug.Log("半径：" + diameter);
-        float x = corners[0].x + ((corners[3].x - corners[0].x) / 2f);
-        float y = corners[0].y + ((corners[1].y - corners[0].y) / 2f);
+        m_diameter = Vector2.Distance(WorldToCanvasPos(m_canvas, m_corners[0]), WorldToCanvasPos(m_canvas, m_corners[2])) / 2f;
+        Debug.Log("半径：" + m_diameter);
+        float x = m_corners[0].x + ((m_corners[3].x - m_corners[0].x) / 2f);
+        float y = m_corners[0].y + ((m_corners[1].y - m_corners[0].y) / 2f);
 
 
         Vector3 center = new Vector3(x, y, 0f);
-        Camera camera = Camera.main;
+        Camera camera = UIManager.Instance.UICamera;
         center = camera.WorldToScreenPoint(center);
 
-        Debug.Log("屏幕坐标中心点" + center);
+        //Debug.Log("屏幕坐标中心点" + center);
 
         Vector2 position = Vector2.zero;
 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, center, camera, out position);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(m_canvas.transform as RectTransform, center, camera, out position);
 
-        Debug.Log("转换完之后的中心点：" + position);
-
-        //if(mask == null) mask = GetComponent<Image>(); 
-        //mask.rectTransform.sizeDelta = new Vector2(target.rectTransform.rect.width, target.rectTransform.rect.height);
-
-        //mask.transform.localPosition = position;
-        //if (Tap)
-        //{
-        //    tap.Play("Click");
-        //    float offset = target.rectTransform.rect.width / 4;
-        //    tap.transform.localPosition = new Vector3(position.x + offset, position.y);
-        //    tap.gameObject.SetActive(true);
-        //}
-        //else
-        //{
-        //    tap.gameObject.SetActive(false);
-        //}
-
+        //Debug.Log("转换完之后的中心点：" + position);
 
         center = new Vector4(position.x, position.y, 0f, 0f);
-        if (material == null)
+        if (m_material == null)
         {
-            material = new Material(GetComponent<Image>().material);
+            m_material = new Material(GetComponent<Image>().material);
         }
-        GetComponent<Image>().material = material;
-        material.SetVector("_Center", center);
+        GetComponent<Image>().material = m_material;
+        m_material.SetVector("_Center", center);
 
 
 
-        (canvas.transform as RectTransform).GetWorldCorners(corners);
-        for (int i = 0; i < corners.Length; i++)
+        (m_canvas.transform as RectTransform).GetWorldCorners(m_corners);
+        for (int i = 0; i < m_corners.Length; i++)
         {
-            current = Mathf.Max(Vector3.Distance(WorldToCanvasPos(canvas, corners[i]), center), current);
+            m_current = Mathf.Max(Vector3.Distance(WorldToCanvasPos(m_canvas, m_corners[i]), center), m_current);
         }
 
-        material.SetFloat("_Silder", current);
+        m_material.SetFloat("_Silder", m_current);
 
     }
 
     public void CloseGuide()
     {
-        mask.enabled = false;
-        mask.raycastTarget = false;
-        simulateButton.Close();
+        m_maskImage.enabled = false;
+        m_maskImage.raycastTarget = false;
+        m_simulateButton.Close();
+        CloseClickMask();
+    }
+
+    public void OpenClickMask()
+    {
+        m_clickMask.raycastTarget = true;
+    }
+
+    public void CloseClickMask()
+    {
+        m_clickMask.raycastTarget = false;
     }
 
     private Vector2 WorldToCanvasPos(Canvas canvas, Vector3 world)
     {
         Vector2 position = Vector2.zero;
-        Camera camera = Camera.main;
+        Camera camera = UIManager.Instance.UICamera;
         Vector3 screenPoint = camera.WorldToScreenPoint(world);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, screenPoint, camera, out position);
         return position;
@@ -112,12 +110,12 @@ public class UITutorialPanel : UIPanelBase
 
     void Update()
     {
-        float value = Mathf.SmoothDamp(current, diameter, ref yVelocity, 0.2f);
-        if (!Mathf.Approximately(value, current))
+        float value = Mathf.SmoothDamp(m_current, m_diameter, ref m_yVelocity, 0.2f);
+        if (!Mathf.Approximately(value, m_current))
         {
-            current = value;
-            if (material == null) return;
-            material.SetFloat("_Silder", current);
+            m_current = value;
+            if (m_material == null) return;
+            m_material.SetFloat("_Silder", m_current);
         }
     }
 }

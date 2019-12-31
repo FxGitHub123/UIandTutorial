@@ -9,15 +9,14 @@ public class TutorialClick : MonoBehaviour, IPointerClickHandler, IPointerDownHa
     private Button m_coveredButton;
     private Vector2 m_pressPosition;
 
-    private RectTransform rectTransform;
     private GameObject m_currentButton;
+    private TutorialObj m_target;
     public void OnPointerClick(PointerEventData eventData)
     {
-        //if (IsPointerOverUIObject() != false)
-        //{
-        //    return;
-        //}
         PassEvent(eventData, ExecuteEvents.pointerClickHandler);
+        TutorialManager.Instance.CloseGuide();
+        UIMessage.OnFinishUIGuide(m_target);
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -30,6 +29,7 @@ public class TutorialClick : MonoBehaviour, IPointerClickHandler, IPointerDownHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         PassEvent(eventData, ExecuteEvents.pointerEnterHandler);
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -59,13 +59,15 @@ public class TutorialClick : MonoBehaviour, IPointerClickHandler, IPointerDownHa
         ExecuteEvents.Execute(m_currentButton, data, function);
     }
 
-    public void SetSimulateButton(Button bt)
+    public void SetSimulateButton(TutorialObj target)
     {
+        Button bt = target.targetButton;
         transform.position = bt.transform.position;
         RectTransform rectTransform = bt.GetComponent<RectTransform>();
         if (rectTransform == null) rectTransform = transform.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, rectTransform.rect.height);
         m_currentButton = bt.gameObject;
+        m_target = target;
     }
 
     public void Close()

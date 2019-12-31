@@ -21,9 +21,8 @@ public class TutorialComponent : MonoBehaviour
 [Serializable]
 public class TutorialObj
 {
-    public string name;
-    public Image image;
-    public Button button;
-    public Action action;
+    public string targetName;
+    public Image targetImage;
+    public Button targetButton;
 }
 

@@ -67,35 +67,25 @@
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUtils.cs" />
-    <Compile Include="Assets\scripts\Manager\ScenesUtil.cs" />
-    <Compile Include="Assets\scripts\Tutorial\TutorialClick.cs" />
-    <Compile Include="Assets\scripts\Tutorial\TutorialComponent.cs" />
-    <Compile Include="Assets\scripts\Tutorial\TutorialManager.cs" />
-    <Compile Include="Assets\scripts\Tutorial\UITutorialPanel.cs" />
-    <Compile Include="Assets\scripts\UI\TitleScreen.cs" />
-    <Compile Include="Assets\scripts\UI\UIMainButtons.cs" />
-    <Compile Include="Assets\scripts\UI\UIManager.cs" />
-    <Compile Include="Assets\scripts\UI\UIMessage.cs" />
-    <Compile Include="Assets\scripts\UI\UIPanelBase.cs" />
-    <Compile Include="Assets\scripts\UI\UIParticleSystem.cs" />
-    <Compile Include="Assets\scripts\UI\UITips.cs" />
-    <Compile Include="Assets\scripts\Utils\Singleton.cs" />
-    <Compile Include="Assets\scripts\Utils\SingletonAutocreate.cs" />
+    <Compile Include="Assets\Scripts\GameConfig.cs" />
+    <Compile Include="Assets\Scripts\Manager\ScenesUtil.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\TutorialClick.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\TutorialComponent.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\TutorialManager.cs" />
+    <Compile Include="Assets\Scripts\Tutorial\UITutorialPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\TitleScreen.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMainButtons.cs" />
+    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMessage.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanelBase.cs" />
+    <Compile Include="Assets\Scripts\UI\UIParticleSystem.cs" />
+    <Compile Include="Assets\Scripts\UI\UITips.cs" />
+    <Compile Include="Assets\Scripts\UIPanelConfig.cs" />
+    <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Utils\SingletonAutocreate.cs" />
     <None Include="Assets\Materials\Default_Mask.shader" />
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Workspace/UI/UI/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Workspace/UI/UI/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Workspace/UI/UI/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Workspace/UI/UI/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>D:/Workspace/UI/UI/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>D:/Workspace/UI/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity2018/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -298,17 +288,11 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/Unity2018/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Analytics.Editor">
-      <HintPath>D:/Workspace/UI/UI/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>D:/Workspace/UI/UI/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>D:/Workspace/UI/UI/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween">
-      <HintPath>D:/Workspace/UI/UI/Assets/DOTween/DOTween.dll</HintPath>
+      <HintPath>D:/Workspace/UI/Assets/DOTween/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel">
+      <HintPath>D:/Workspace/UI/Assets/Plugins/Excel.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Unity2018/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

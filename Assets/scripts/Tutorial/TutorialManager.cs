@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TutorialManager : Singleton<TutorialManager>
+public class TutorialManager : SingletonAutocreate<TutorialManager>
 {
-    private List<TutorialObj> TutorialObjList;
+    private List<TutorialObj> m_tutorialObjList;
 
-    private UITutorialPanel TutorialPanel;
+    private UITutorialPanel m_tutorialPanel;
 
     public TutorialObj GetTutorialObj(string name)
     {
-        foreach (var item in TutorialObjList)
+        foreach (var item in m_tutorialObjList)
         {
-            if (item.name.Equals(name))
+            if (item.targetName.Equals(name))
             {
                 return item;
             }
@@ -25,22 +25,34 @@ public class TutorialManager : Singleton<TutorialManager>
 
     public void Register(TutorialObj obj)
     {
-        if (TutorialObjList == null) TutorialObjList = new List<TutorialObj>();
-        if (TutorialObjList.Contains(obj)) return;
-        TutorialObjList.Add(obj);
+        if (m_tutorialObjList == null) m_tutorialObjList = new List<TutorialObj>();
+        if (m_tutorialObjList.Contains(obj)) return;
+        m_tutorialObjList.Add(obj);
     }
 
-    public void SetGuideTarget(TutorialObj target)
+    public void SetGuideTarget(TutorialObj target,bool isMask = true)
     {
-        if (TutorialPanel == null) TutorialPanel = UIManager.GetUIPanel<UITutorialPanel>();
-        TutorialPanel.SetGuideTarget(target);
-        TutorialPanel.OpenPanel();
+        if (m_tutorialPanel == null) m_tutorialPanel = UIManager.GetUIPanel<UITutorialPanel>();
+        m_tutorialPanel.SetGuideTarget(target, isMask);
+        m_tutorialPanel.OpenPanel();
     }
 
     public void CloseGuide()
     {
-        if (TutorialPanel == null) TutorialPanel = UIManager.GetUIPanel<UITutorialPanel>();
-        TutorialPanel.CloseGuide();
-        TutorialPanel.ClosePanel();
+        if (m_tutorialPanel == null) m_tutorialPanel = UIManager.GetUIPanel<UITutorialPanel>();
+        m_tutorialPanel.CloseGuide();
+        //m_tutorialPanel.ClosePanel();
+    }
+
+    public void OpenClickMask()
+    {
+        if (m_tutorialPanel == null) m_tutorialPanel = UIManager.GetUIPanel<UITutorialPanel>();
+        m_tutorialPanel.OpenClickMask();
+    }
+
+    public void CloseClickMask()
+    {
+        if (m_tutorialPanel == null) m_tutorialPanel = UIManager.GetUIPanel<UITutorialPanel>();
+        m_tutorialPanel.CloseClickMask();
     }
 }
