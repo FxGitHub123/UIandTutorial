@@ -27,7 +27,7 @@ public class UIMainButtons : UIPanelBase
 
     public void ShowTutorial()
     {
-        TutorialManager.Instance.SetGuideTarget(TutorialManager.Instance.GetTutorialObj("shop"));
+        TutorialManager.SetGuideTarget(TutorialManager.Instance.GetTutorialObj("shop"));
     }
 
     public void FinishTutorial()

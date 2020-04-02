@@ -5,6 +5,7 @@ using System;
 
 public class UIManager : SingletonAutocreate<UIManager>
 {
+    public Camera UICamera;
 
     [SerializeField]
     private Transform UIMainRoot;
@@ -27,6 +28,8 @@ public class UIManager : SingletonAutocreate<UIManager>
     private Dictionary<string, GameObject> m_PanelDic;
     private TitleScreen m_titleScreen;
     private UITips m_tipsPanel;
+
+   
 
 
     #region 生命周期
